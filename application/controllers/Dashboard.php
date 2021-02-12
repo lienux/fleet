@@ -17,23 +17,9 @@ class Dashboard extends CI_Controller {
 			'breadcrumb' => 'Dashboard',
 			'dropdown_master' => 'collapse'
 		);
-		$data['page'] = $this->load->view('page_dashboard',array(),true);
+		$data['page'] = $this->load->view('page/dash/dashboard',array(),true);
 
-		$this->parser->parse('layout_admin',$data);
-	}
-	
-	public function tampilkan_session(){
-		$username = $this->session->userdata('username');
-		$email = $this->session->userdata('email');
-		$logged_in = $this->session->userdata('logged_in');
-
-		echo $username. ' | '. $email . ' | ' . $logged_in;
-	}
-
-	public function logout(){
-		$this->session->sess_destroy();
-
-		redirect('login');
+		$this->parser->parse('template/layout_admin',$data);
 	}
 
 }

@@ -8,7 +8,8 @@
         <meta name="author" content="" />
         <title>Admin</title>
         <link href="<?=base_url();?>public/plugins/sb-admin/css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <!-- <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" /> -->
+        <link href="<?=base_url();?>public/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -32,7 +33,7 @@
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?=base_url();?>admin/logout">Logout</a>
+                        <a class="dropdown-item" href="<?=base_url();?>login/logout">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -47,8 +48,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            
+                            <div class="sb-sidenav-menu-heading">Interface</div>                            
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Master
@@ -61,7 +61,6 @@
                                     <a class="nav-link" href="<?=base_url();?>rute">Rute</a>
                                 </nav>
                             </div>
-
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
@@ -116,6 +115,9 @@
                         <ol class="breadcrumb mb-4 mt-4">
                             <li class="breadcrumb-item active">{breadcrumb}</li>
                         </ol>
+                        <div class="alert alert-success mt-4 <?php if($this->session->flashdata('alert_true')==''){echo 'collapse';}else{echo '';};?>" role="alert" id="alert_flash">
+                            <?php echo $this->session->flashdata('message');?>
+                        </div>
                         <?php 
                             echo $page;
                         ?>
@@ -124,7 +126,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div class="text-muted">Copyright &copy; STIKOM ELRAHMA <?=date('Y');?></div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

@@ -5,7 +5,8 @@ class Driver extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		
+		$this->load->library('parser');
+				
 		if($this->session->userdata('logged_in') == FALSE){
 			redirect("login");
 		}
@@ -13,8 +14,11 @@ class Driver extends CI_Controller {
 
 	public function index()
 	{
-		$data['page'] = $this->load->view('page_driver',array(),true);
-		$this->load->view('layout_admin',$data);				        
+		$data = array(			
+			'breadcrumb' => 'Vehicle'
+		);
+		$data['page'] = $this->load->view('page/pengemudi/list',array(),true);
+		$this->parser->parse('template/layout_admin',$data);				        
 	}
 
 }

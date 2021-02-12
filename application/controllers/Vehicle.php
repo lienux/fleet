@@ -16,13 +16,12 @@ class Vehicle extends CI_Controller {
 	public function index()
 	{
 		$data = array(			
-			'breadcrumb' => 'Vehicle',
-	        'dropdown_master' => ''
+			'breadcrumb' => 'Vehicle'
 		);
 		$res = $this->mVehicle->get();
 		
-		$data['page'] = $this->load->view('page_vehicle',array('data_vehicle'=>$res),true);
-		$this->parser->parse('layout_admin',$data);				        
+		$data['page'] = $this->load->view('page/kendaraan/list',array('data_vehicle'=>$res),true);
+		$this->parser->parse('template/layout_admin',$data);				        
 	}
 
 	public function tambah()
@@ -31,8 +30,8 @@ class Vehicle extends CI_Controller {
 			'breadcrumb' => 'Vehicle / Tambah',
 	        'dropdown_master' => ''
 		);
-		$data['page'] = $this->load->view('form_tambah_vehicle',array(),true);
-		$this->parser->parse('layout_admin',$data);	
+		$data['page'] = $this->load->view('page/kendaraan/form',array(),true);
+		$this->parser->parse('template/layout_admin',$data);	
 	}
 
 	public function doSimpan()
@@ -51,20 +50,29 @@ class Vehicle extends CI_Controller {
 
 		if ($res > 0) {
 			$this->session->set_flashdata('alert_true', 'collapse');
-			$this->session->set_flashdata('item', 'Alhamdulillah...');
+			$this->session->set_flashdata('message', 'Alhamdulillah...');
 			redirect('vehicle');
 		}else{
 			echo "Teu Eucreug";
 		}
 	}
 
-	public function delete($id)
+	public function edit($id)
+	{
+
+	}
+
+	public function doUpdate($id)
+	{
+
+	}
+
+	public function doHapus($id)
 	{
 		$res = $this->mVehicle->hapus($id);
-
 		if ($res > 0) {
 			$this->session->set_flashdata('alert_true', 'collapse');
-			$this->session->set_flashdata('item', 'Alhamdulillah... Hapus data berhasil');
+			$this->session->set_flashdata('message', 'Alhamdulillah... Hapus data berhasil');
 			redirect('vehicle');
 		}else{
 			echo "gagal";

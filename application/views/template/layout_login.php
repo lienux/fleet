@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Login Fleet</title>
         <link href="<?=base_url();?>public/plugins/sb-admin/css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="<?=base_url();?>public/node_modules/@fortawesome/fontawesome-free/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -63,7 +63,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div class="text-muted">Copyright &copy; STIKOM ELRAHMA</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
@@ -75,7 +75,7 @@
             </div>
         </div>
         <script src="<?=base_url();?>public/node_modules/jquery/dist/jquery.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="<?=base_url();?>public/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?=base_url();?>public/plugins/sb-admin/js/scripts.js"></script>
     </body>
 </html>

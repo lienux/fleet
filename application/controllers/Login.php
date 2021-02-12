@@ -10,14 +10,13 @@ class Login extends CI_Controller {
     }
 
 	public function index()
-	{
-		
+	{		
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE)
         {
-            $this->load->view('layout_login');
+            $this->load->view('template/layout_login');
             $this->load->view('app_js/page_login');
         }
         else
@@ -35,7 +34,8 @@ class Login extends CI_Controller {
         
 	}
 
-    public function doLogin(){
+    public function doLogin()
+    {
         $u = $this->input->post('email');
         $p = $this->input->post('password');
         $md5_p = md5($p);
@@ -50,8 +50,6 @@ class Login extends CI_Controller {
         if ($cek > 0) {
 
             $data = $this->mLogin->get($u);
-
-            // var_dump($data);
 
             foreach ($data as $d) {
                 $id = $d['id'];
@@ -74,6 +72,12 @@ class Login extends CI_Controller {
         }else{
             echo "Ga boleh KEPO klo ga punya akun!";
         }
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('login');
     }
 
 }
