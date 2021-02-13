@@ -6,6 +6,7 @@ class Vehicle extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('parser');
+		$this->load->library('form_validation');
 		$this->load->model('Mod_vehicle','mVehicle');
 		
 		if($this->session->userdata('logged_in') == FALSE){
@@ -36,25 +37,36 @@ class Vehicle extends CI_Controller {
 
 	public function doSimpan()
 	{
-		$flat_no = $this->input->post('txtFlatNo');
-		$jk = $this->input->post('txtJK');
-		$no_mesin = $this->input->post('txtNoMesin');
+		$this->form_validation->set_rules('txtFlatNo', 'Flat Nomor', 'required');
+		$this->form_validation->set_rules('txtJK', 'Jenis Kendaraan', 'required');
+		$this->form_validation->set_rules('txtNoMesin', 'Nomor Mesin', 'required');
 
-		$data = array(
-			'flat_no'=>$flat_no,
-			'jenis_kendaraan'=>$jk,
-			'nomor_mesin'=>$no_mesin
-		);
+		if ($this->form_validation->run() == TRUE){
+			$flat_no = $this->input->post('txtFlatNo');
+			$jk = $this->input->post('txtJK');
+			$no_mesin = $this->input->post('txtNoMesin');
 
-		$res = $this->mVehicle->simpan($data);
+			$data = array(
+				'flat_no'=>$flat_no,
+				'jenis_kendaraan'=>$jk,
+				'nomor_mesin'=>$no_mesin
+			);
 
-		if ($res > 0) {
-			$this->session->set_flashdata('alert_true', 'collapse');
-			$this->session->set_flashdata('message', 'Alhamdulillah...');
-			redirect('vehicle');
+			$res = $this->mVehicle->simpan($data);
+
+			if ($res > 0) {
+				$this->session->set_flashdata('alert_true', 'collapse');
+				$this->session->set_flashdata('message', 'Alhamdulillah...');
+				redirect('vehicle');
+			}else{
+				echo "Teu Eucreug";
+			}			
 		}else{
-			echo "Teu Eucreug";
+			$this->session->set_flashdata('alert_true', 'collapse');
+			$this->session->set_flashdata('message', validation_errors());
+			redirect('vehicle/tambah');
 		}
+
 	}
 
 	public function edit($id)
@@ -70,24 +82,34 @@ class Vehicle extends CI_Controller {
 
 	public function doUpdate($id)
 	{
-		$flat_no = $this->input->post('txtFlatNo');
-		$jk = $this->input->post('txtJK');
-		$no_mesin = $this->input->post('txtNoMesin');
+		$this->form_validation->set_rules('txtFlatNo', 'Flat Nomor', 'required');
+		$this->form_validation->set_rules('txtJK', 'Jenis Kendaraan', 'required');
+		$this->form_validation->set_rules('txtNoMesin', 'Nomor Mesin', 'required');
 
-		$data = array(
-			'flat_no'=>$flat_no,
-			'jenis_kendaraan'=>$jk,
-			'nomor_mesin'=>$no_mesin
-		);
+		if ($this->form_validation->run() == TRUE){
+			$flat_no = $this->input->post('txtFlatNo');
+			$jk = $this->input->post('txtJK');
+			$no_mesin = $this->input->post('txtNoMesin');
 
-		$res = $this->mVehicle->update($id,$data);
+			$data = array(
+				'flat_no'=>$flat_no,
+				'jenis_kendaraan'=>$jk,
+				'nomor_mesin'=>$no_mesin
+			);
 
-		if ($res > 0) {
-			$this->session->set_flashdata('alert_true', 'collapse');
-			$this->session->set_flashdata('message', 'Alhamdulillah...');
-			redirect('vehicle');
+			$res = $this->mVehicle->update($id,$data);
+
+			if ($res > 0) {
+				$this->session->set_flashdata('alert_true', 'collapse');
+				$this->session->set_flashdata('message', 'Alhamdulillah...');
+				redirect('vehicle');
+			}else{
+				echo "Teu Eucreug";
+			}
 		}else{
-			echo "Teu Eucreug";
+			$this->session->set_flashdata('alert_true', 'collapse');
+			$this->session->set_flashdata('message', validation_errors());
+			redirect('vehicle/edit/'.$id);
 		}
 	}
 

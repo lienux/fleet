@@ -115,7 +115,7 @@
                         <ol class="breadcrumb mb-4 mt-4">
                             <li class="breadcrumb-item active">{breadcrumb}</li>
                         </ol>
-                        <div class="alert alert-success mt-4 <?php if($this->session->flashdata('alert_true')==''){echo 'collapse';}else{echo '';};?>" role="alert" id="alert_flash">
+                        <div class="alert alert-danger mt-4 <?php if($this->session->flashdata('alert_true')==''){echo 'collapse';}else{echo '';};?>" role="alert" id="alert_flash">
                             <?php echo $this->session->flashdata('message');?>
                         </div>
                         <?php 
@@ -137,6 +137,13 @@
                 </footer>
             </div>
         </div>
+        <?php if($this->session->flashdata('alert_true')!='') { ?>
+            <script>
+                setTimeout(function() {
+                    $('#alert_flash').addClass('collapse');
+                }, 2000);
+            </script>
+        <?php } ?>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?=base_url();?>public/plugins/sb-admin/js/scripts.js"></script>

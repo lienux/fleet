@@ -65,10 +65,6 @@
 </div>
 
 <script>
-    setTimeout(function() {
-        $('#alert_flash').addClass('collapse');
-    }, 2000);
-
     function modal_hapus(id){
         $('#btn-hapus').attr('href','<?=base_url();?>vehicle/doHapus/'+id);
         $('#modalHapus').modal('show');

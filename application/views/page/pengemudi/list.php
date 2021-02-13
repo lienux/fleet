@@ -6,26 +6,47 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Jenis Kelamin</th>
+                        <th>No SIM</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $no=1; foreach ($list_data as $row) { ?>
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>                        
+                        <td><?= $no++; ?></td>
+                        <td><?php echo $row['name'];?></td>
+                        <td>
+                            <?php
+                                $jk = $row['jk'];
+                                if ($jk==0) {
+                                    echo "Laki-laki";
+                                }else{
+                                    echo "Perempuan";
+                                }
+                            ?>    
+                        </td>
+                        <td><?= $row['nomor_sim'];?></td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <div class="btn-group" role="group">
+                                    <a href="#" id="btnGroupDrop1" data-toggle="dropdown"><i class="fa fa-cogs"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="<?=base_url('vehicle/edit/'.$row['id']);?>">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a class="dropdown-item" href="#" onclick="modal_hapus('<?=$row["id"];?>');"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php } ?>                       
                 </tbody>
             </table>
         </div>
